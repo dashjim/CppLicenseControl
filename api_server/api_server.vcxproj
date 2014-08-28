@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{31340B9C-3BDC-4B09-89FD-6AE66CF63821}</ProjectGuid>
-    <RootNamespace>SimpleServerClient</RootNamespace>
+    <ProjectGuid>{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}</ProjectGuid>
+    <RootNamespace>api_server</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -60,13 +60,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="chat_client.cpp" />
-    <ClCompile Include="chat_server.cpp" />
-    <ClCompile Include="login_logout_server.cpp" />
-    <ClCompile Include="telnet.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="chat_message.hpp" />
+    <ClCompile Include="..\SimpleServerClient\login_logout_server.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

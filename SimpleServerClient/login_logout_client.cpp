@@ -11,14 +11,14 @@
 #include <cstdlib>
 #include <deque>
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <boost/bind.hpp>
 #include <boost/asio.hpp>
 #include <boost/thread/thread.hpp>
-#include "chat_message.hpp"
+
 
 using boost::asio::ip::tcp;
-
-typedef std::deque<chat_message> chat_message_queue;
 
 class chat_client
 {
@@ -33,13 +33,15 @@ public:
           boost::asio::placeholders::error));
   }
 
-  void write(const chat_message& msg)
+  void write(const std::string& msg)
   {
+      std::cout << "going to post. "<<std::endl;
     io_service_.post(boost::bind(&chat_client::do_write, this, msg));
   }
 
   void close()
   {
+      std::cout <<"client closed" << std::cout;
     io_service_.post(boost::bind(&chat_client::do_close, this));
   }
 
@@ -49,21 +51,22 @@ private:
   {
     if (!error)
     {
-      boost::asio::async_read(socket_,
-          boost::asio::buffer(read_msg_.data(), chat_message::header_length),
-          boost::bind(&chat_client::handle_read_header, this,
-            boost::asio::placeholders::error));
+      //get response
+        boost::asio::async_read_until(socket_, data_, "\r\n",
+            boost::bind(
+              &chat_client::handle_read_header, this,
+              boost::asio::placeholders::error));
     }
   }
 
   void handle_read_header(const boost::system::error_code& error)
   {
-    if (!error && read_msg_.decode_header())
+    if (!error )
     {
-      boost::asio::async_read(socket_,
-          boost::asio::buffer(read_msg_.body(), read_msg_.body_length()),
-          boost::bind(&chat_client::handle_read_body, this,
-            boost::asio::placeholders::error));
+        // print out
+        std::ostringstream ss;
+        ss << &data_;
+        std::cout << "client read: " << ss.str() << "\n";
     }
     else
     {
@@ -71,67 +74,38 @@ private:
     }
   }
 
-  void handle_read_body(const boost::system::error_code& error)
+  void do_write(std::string msg)
   {
-    if (!error)
-    {
-      std::cout.write(read_msg_.body(), read_msg_.body_length());
-      std::cout << "\n";
-      boost::asio::async_read(socket_,
-          boost::asio::buffer(read_msg_.data(), chat_message::header_length),
-          boost::bind(&chat_client::handle_read_header, this,
-            boost::asio::placeholders::error));
-    }
-    else
-    {
-      do_close();
-    }
-  }
-
-  void do_write(chat_message msg)
-  {
-    bool write_in_progress = !write_msgs_.empty();
-    write_msgs_.push_back(msg);
-    if (!write_in_progress)
-    {
+      std::cout << "Going to write."<<std::endl;
       boost::asio::async_write(socket_,
-          boost::asio::buffer(write_msgs_.front().data(),
-            write_msgs_.front().length()),
+          boost::asio::buffer(msg.c_str(),std::strlen(msg.c_str())),
           boost::bind(&chat_client::handle_write, this,
             boost::asio::placeholders::error));
-    }
   }
 
   void handle_write(const boost::system::error_code& error)
   {
     if (!error)
     {
-      write_msgs_.pop_front();
-      if (!write_msgs_.empty())
-      {
-        boost::asio::async_write(socket_,
-            boost::asio::buffer(write_msgs_.front().data(),
-              write_msgs_.front().length()),
-            boost::bind(&chat_client::handle_write, this,
-              boost::asio::placeholders::error));
-      }
+        std::cout << "write done." << std::endl;
     }
     else
     {
+        std::cout << "write error.";
       do_close();
     }
   }
 
   void do_close()
   {
+    std::cout << "socket close.";
     socket_.close();
   }
 
 private:
   boost::asio::io_service& io_service_;
   tcp::socket socket_;
-  chat_message read_msg_;
-  chat_message_queue write_msgs_;
+  boost::asio::streambuf data_;
 };
 
 int main(int argc, char* argv[])
@@ -154,15 +128,15 @@ int main(int argc, char* argv[])
 
     boost::thread t(boost::bind(&boost::asio::io_service::run, &io_service));
 
-    char line[chat_message::max_body_length + 1];
-    while (std::cin.getline(line, chat_message::max_body_length + 1))
+    using namespace std;
+    std::string input = "";
+    while (std::getline(cin, input))
     {
       using namespace std; // For strlen and memcpy.
-      chat_message msg;
-      msg.body_length(strlen(line));
-      memcpy(msg.body(), line, msg.body_length());
-      msg.encode_header();
-      c.write(msg);
+      cout << "echo: " << input << endl;
+
+      c.write(input+"\r\n");
+     // c.write(input);
     }
 
     c.close();

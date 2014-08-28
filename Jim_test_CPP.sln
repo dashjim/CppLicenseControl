@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boostLogBackup", "boostLogB
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleServerClient", "SimpleServerClient\SimpleServerClient.vcxproj", "{31340B9C-3BDC-4B09-89FD-6AE66CF63821}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_server", "api_server\api_server.vcxproj", "{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_client", "api_client\api_client.vcxproj", "{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +35,14 @@ Global
 		{31340B9C-3BDC-4B09-89FD-6AE66CF63821}.Debug|Win32.Build.0 = Debug|Win32
 		{31340B9C-3BDC-4B09-89FD-6AE66CF63821}.Release|Win32.ActiveCfg = Release|Win32
 		{31340B9C-3BDC-4B09-89FD-6AE66CF63821}.Release|Win32.Build.0 = Release|Win32
+		{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}.Debug|Win32.Build.0 = Debug|Win32
+		{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}.Release|Win32.ActiveCfg = Release|Win32
+		{DB0B9BAA-CA88-43AA-A1DA-FDAC8C9D63D5}.Release|Win32.Build.0 = Release|Win32
+		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Debug|Win32.Build.0 = Debug|Win32
+		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Release|Win32.ActiveCfg = Release|Win32
+		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

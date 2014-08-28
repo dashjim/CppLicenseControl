@@ -111,6 +111,9 @@ public:
         }
         //response to sender
         deliver("Server: I got it.\r\n");
+
+        /*TODO need to close the connection.*/
+        start();//start to wait for another line of incoming data.
     }
     else
     {
@@ -136,7 +139,7 @@ public:
   int parse_json(std::string str)  
     {  
       //{\"operation\": "login":, \"para\": [{ \"name\":\"ext\",\"value\": \"888888\"}, {\"name\":\"pwd\", \"value\":\"guessME!\"  } ]}\r\n
-        using namespace boost::property_tree;  
+      using namespace boost::property_tree;  
       
       std::stringstream ss(str);  
       ptree pt;  
@@ -145,24 +148,15 @@ public:
       }  
       catch(ptree_error & e) {  
           std::cout << "parse JSON error - "<<e.what()<<std::endl;
-          return 1;   
-      }  
+          return 1;
+      }
       
       try{  
         std::string op = pt.get<std::string>("operation");
         std::cout << "operation:  "<< op.c_str() << std::endl;
         received_call.m_operation = op.c_str();
           
-     //   for (boost::property_tree::ptree::iterator it = para_array.begin(); it != para_array.end(); ++it)
-	    //{        std::string pwd;
-     //   
-     //       std::string ext;
-     //       ext = it->second.get<std::string>("ext");
-     //      
-     //       std::cout<<it->second.get_optional<std::string>("pwd");
-	    //}
-
-         BOOST_FOREACH(ptree::value_type &v, pt.get_child("para")){
+        BOOST_FOREACH(ptree::value_type &v, pt.get_child("para")){
             param_t result;
             result.set_value(v.second.get<std::string>("value"));
             result.set_name(v.second.get<std::string>("name"));

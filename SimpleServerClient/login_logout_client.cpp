@@ -67,6 +67,10 @@ private:
         std::ostringstream ss;
         ss << &data_;
         std::cout << "client read: " << ss.str() << "\n";
+        boost::asio::async_read_until(socket_, data_, "\r\n",
+            boost::bind(
+              &chat_client::handle_read_header, this,
+              boost::asio::placeholders::error));
     }
     else
     {

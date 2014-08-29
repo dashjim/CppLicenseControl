@@ -47,6 +47,10 @@ public:
             std::cout << "\tvalue: " << params[i].get_value()<< std::endl;
         }
     }
+
+    void reset(){
+         params.clear();
+    }
 };
 
 //----------------------------------------------------------------------
@@ -162,13 +166,14 @@ public:
             result.set_name(v.second.get<std::string>("name"));
             received_call.set_one_para(result);
         }
-        received_call.print();
+        received_call.print();//TODO call implement.
+        received_call.reset();
  
       }  
       catch (ptree_error & e)  
       {  
           std::cout << "ptree error"<<std::endl;
-        return 2;  
+          return 2;  
       }  
       return 0;  
     }  

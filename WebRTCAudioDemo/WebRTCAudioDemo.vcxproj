@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D682CCCD-1238-4EB5-994D-E7093A8C93E6}</ProjectGuid>
+    <RootNamespace>WebRTCAudioDemo</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\depot\vdia\third_party\webrtc\src\voice_engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\depot\vdia-build\WebRTCEngine\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WebRTCEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\depot\vdia\third_party\webrtc\src\voice_engine\include;C:\depot\vdia\third_party\webrtc\src;C:\depot\vdia\third_party\webrtc\src\voice_engine;C:\depot\vdia\third_party\webrtc\src\system_wrappers\interface;C:\depot\vdia\third_party\webrtc\src\modules\utility\interface;C:\depot\vdia\third_party\webrtc\src\modules\audio_device\include;C:\depot\vdia\third_party\webrtc\src\modules\audio_processing\include;C:\depot\vdia\third_party\webrtc\src\modules\interface;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\depot\vdia-build\WebRTCEngine\Release;C:\depot\vdia-build\G729AB\Release;C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.0A\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WebRTCEngine.lib;G729AB.lib;Strmiids.lib;msdmo.lib;dmoguids.lib;Uxtheme.lib;VdmDbg.Lib;vds_uuid.lib;Version.Lib;Vfw32.Lib;virtdisk.lib;vpccominterfaces.lib;vssapi.lib;vss_uuid.lib;vstorinterface.lib;WbemUuid.Lib;wcmguid.lib;wdsbp.lib;WdsClientApi.lib;wdsmc.lib;wdspxe.lib;wdstptc.lib;WebPost.Lib;WebServices.lib;wecapi.lib;WER.LIB;wevtapi.lib;WiaGuid.Lib;WinBio.lib;windowscodecs.lib;WindowsSideShowGuids.lib;WinFax.Lib;winhttp.lib;WinInet.Lib;WinMM.Lib;winsatapi.lib;WinSCard.Lib;WinSpool.Lib;WinStrm.Lib;WinTrust.Lib;wlanapi.lib;wlanui.lib;Wldap32.Lib;wmcodecdspuuid.lib;wmdrmsdk.lib;wmiutils.lib;wmvcore.lib;workspaceax.lib;Wow32.Lib;WS2_32.Lib;wsbapp_uuid.Lib;wscapi.lib;wsdapi.lib;wsmsvc.lib;WSnmp32.Lib;WSock32.Lib;Wst.Lib;WtsApi32.Lib;wuguid.lib;xaSwitch.Lib;Xinput.lib;xmllite.lib;xoleHlp.Lib;xpsprint.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CWRTCSound.h" />
+    <ClInclude Include="WRTCCommon.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

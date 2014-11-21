@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_server", "api_server\ap
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_client", "api_client\api_client.vcxproj", "{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebRTCAudioDemo", "WebRTCAudioDemo\WebRTCAudioDemo.vcxproj", "{D682CCCD-1238-4EB5-994D-E7093A8C93E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,10 @@ Global
 		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Debug|Win32.Build.0 = Debug|Win32
 		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Release|Win32.ActiveCfg = Release|Win32
 		{A5A4F0B6-C53A-4CA8-8D66-FC18481815B7}.Release|Win32.Build.0 = Release|Win32
+		{D682CCCD-1238-4EB5-994D-E7093A8C93E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D682CCCD-1238-4EB5-994D-E7093A8C93E6}.Debug|Win32.Build.0 = Debug|Win32
+		{D682CCCD-1238-4EB5-994D-E7093A8C93E6}.Release|Win32.ActiveCfg = Release|Win32
+		{D682CCCD-1238-4EB5-994D-E7093A8C93E6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
